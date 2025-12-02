@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop All Tees - CALAZ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        <div class="announcement-content">
+            <span class="announcement-text">FREE SHIPPING ON ORDERS OVER $100</span>
+            <span class="announcement-divider">|</span>
+            <span class="announcement-countdown">
+                <span class="countdown-label">WINTER SALE ENDS IN</span>
+                <span class="countdown-timer" id="countdown">00:00:00:00</span>
+            </span>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-left">
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                    <span class="hamburger"></span>
+                </button>
+                <ul class="nav-links">
+                    <li class="nav-item">
+                        <a href="shop.html" class="nav-link">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="shop.html?filter=new" class="nav-link">New Arrivals</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="shop.html?filter=sale" class="nav-link sale-link">Sale</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="nav-center">
+                <a href="index.html" class="logo">CALAZ</a>
+            </div>
+            <div class="nav-right">
+                <button class="nav-icon search-toggle" id="searchToggle" aria-label="Search">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="M21 21l-4.35-4.35"></path>
+                    </svg>
+                </button>
+                <button class="nav-icon cart-toggle" id="cartToggle" aria-label="Cart">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <div class="mobile-menu-header">
+                <span class="logo">CALAZ</span>
+                <button class="close-menu" id="closeMenu" aria-label="Close menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <nav class="mobile-nav">
+                <a href="shop.html" class="mobile-nav-link">Shop All</a>
+                <a href="shop.html?category=graphic" class="mobile-nav-link">Graphic Tees</a>
+                <a href="shop.html?category=essential" class="mobile-nav-link">Essential Basics</a>
+                <a href="shop.html?filter=new" class="mobile-nav-link">New Arrivals</a>
+                <a href="shop.html?filter=sale" class="mobile-nav-link highlight">Sale</a>
+                <div class="mobile-nav-divider"></div>
+                <a href="about.html" class="mobile-nav-link secondary">About</a>
+                <a href="contact.html" class="mobile-nav-link secondary">Contact</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-container">
+            <form class="search-form" action="shop.html" method="GET">
+                <input type="text" name="search" class="search-input" placeholder="Search for tees..." autocomplete="off">
+                <button type="submit" class="search-submit" aria-label="Search">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="M21 21l-4.35-4.35"></path>
+                    </svg>
+                </button>
+            </form>
+            <button class="search-close" id="searchClose" aria-label="Close search">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <aside class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="cart-close" id="cartClose" aria-label="Close cart">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="cart-body" id="cartBody">
+            <div class="cart-empty">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+                <p>Your cart is empty</p>
+                <a href="shop.html" class="btn btn-primary">Start Shopping</a>
+            </div>
+            <div class="cart-items" id="cartItems"></div>
+        </div>
+        <div class="cart-footer" id="cartFooter">
+            <div class="cart-subtotal">
+                <span>Subtotal</span>
+                <span id="cartSubtotal">$0.00</span>
+            </div>
+            <p class="cart-note">Shipping calculated at checkout</p>
+            <a href="checkout.html" class="btn btn-primary btn-block">Checkout</a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+        <section class="shop-hero">
+            <div class="container">
+                <h1 id="shopTitle">All Tees</h1>
+                <p id="shopDescription">Premium streetwear tees crafted for those who refuse to blend in.</p>
+            </div>
+        </section>
+
+        <section class="products" style="padding-top: 0;">
+            <div class="container">
+                <div class="shop-filters">
+                    <div class="filter-group">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="graphic">Graphic</button>
+                        <button class="filter-btn" data-filter="essential">Essential</button>
+                        <button class="filter-btn" data-filter="oversized">Oversized</button>
+                        <button class="filter-btn" data-filter="limited">Limited</button>
+                    </div>
+                    <select class="sort-select" id="sortSelect">
+                        <option value="featured">Featured</option>
+                        <option value="newest">Newest</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                    </select>
+                </div>
+
+                <div class="products-grid" id="shopProductsGrid"></div>
+
+                <div style="text-align: center; margin-top: var(--space-3xl);">
+                    <button class="btn btn-secondary" id="loadMoreBtn">Load More</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">CALAZ</a>
+                    <p>Premium streetwear tees for those who dare to stand out.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Shop</h4>
+                    <a href="shop.html">All Tees</a>
+                    <a href="shop.html?filter=new">New Arrivals</a>
+                    <a href="shop.html?filter=sale">Sale</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Help</h4>
+                    <a href="contact.html">Contact</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Shipping</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <a href="about.html">About Us</a>
+                    <a href="about.html#sustainability">Sustainability</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2024 Calaz. All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        const allProducts = [...products, ...newArrivals];
+        const shopProductsGrid = document.getElementById('shopProductsGrid');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const sortSelect = document.getElementById('sortSelect');
+        const shopTitle = document.getElementById('shopTitle');
+        const shopDescription = document.getElementById('shopDescription');
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const filterParam = urlParams.get('filter') || urlParams.get('category');
+
+        function updatePageTitle(filter) {
+            const titles = {
+                'all': { title: 'All Tees', desc: 'Premium streetwear tees crafted for those who refuse to blend in.' },
+                'graphic': { title: 'Graphic Tees', desc: 'Bold designs that make a statement.' },
+                'essential': { title: 'Essential Basics', desc: 'Timeless basics for your everyday wardrobe.' },
+                'oversized': { title: 'Oversized Fit', desc: 'Relaxed silhouettes for maximum comfort.' },
+                'limited': { title: 'Limited Edition', desc: 'Exclusive drops. Once they\'re gone, they\'re gone.' },
+                'new': { title: 'New Arrivals', desc: 'Fresh drops just landed.' },
+                'sale': { title: 'Sale', desc: 'Up to 40% off on selected styles.' }
+            };
+            const data = titles[filter] || titles['all'];
+            shopTitle.textContent = data.title;
+            shopDescription.textContent = data.desc;
+        }
+
+        function filterProducts(filter) {
+            if (filter === 'graphic') return allProducts.filter(p => p.category === 'Graphic Tees');
+            if (filter === 'essential') return allProducts.filter(p => p.category === 'Essential Basics');
+            if (filter === 'oversized') return allProducts.filter(p => p.category === 'Oversized Fit');
+            if (filter === 'limited') return allProducts.filter(p => p.category === 'Limited Edition');
+            if (filter === 'new') return allProducts.filter(p => p.badge === 'new');
+            if (filter === 'sale') return allProducts.filter(p => p.badge === 'sale');
+            return allProducts;
+        }
+
+        function sortProducts(products, sortBy) {
+            const sorted = [...products];
+            if (sortBy === 'price-low') sorted.sort((a, b) => a.price - b.price);
+            if (sortBy === 'price-high') sorted.sort((a, b) => b.price - a.price);
+            if (sortBy === 'newest') sorted.sort((a, b) => b.id - a.id);
+            return sorted;
+        }
+
+        function renderShopProducts(filter = 'all', sortBy = 'featured') {
+            const filtered = filterProducts(filter);
+            const sorted = sortProducts(filtered, sortBy);
+            renderProducts(shopProductsGrid, sorted);
+            updatePageTitle(filter);
+        }
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderShopProducts(btn.dataset.filter, sortSelect.value);
+            });
+        });
+
+        sortSelect.addEventListener('change', () => {
+            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+            renderShopProducts(activeFilter, sortSelect.value);
+        });
+
+        let initialFilter = filterParam || 'all';
+        filterBtns.forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.filter === initialFilter);
+        });
+        renderShopProducts(initialFilter, 'featured');
+
+        document.getElementById('loadMoreBtn').addEventListener('click', function() {
+            this.textContent = 'No more products';
+            this.disabled = true;
+            this.style.opacity = '0.5';
+        });
+    </script>
+</body>
+</html>
+

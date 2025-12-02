@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALAZ - Premium Streetwear Tees</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        <div class="announcement-content">
+            <span class="announcement-text">FREE SHIPPING ON ORDERS OVER $100</span>
+            <span class="announcement-divider">|</span>
+            <span class="announcement-countdown">
+                <span class="countdown-label">WINTER SALE ENDS IN</span>
+                <span class="countdown-timer" id="countdown">00:00:00:00</span>
+            </span>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-left">
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                    <span class="hamburger"></span>
+                </button>
+                <ul class="nav-links">
+                    <li class="nav-item has-dropdown">
+                        <a href="shop.html" class="nav-link">Shop</a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-content">
+                                <div class="dropdown-column">
+                                    <h4>Categories</h4>
+                                    <a href="shop.html?category=tees">All Tees</a>
+                                    <a href="shop.html?category=graphic">Graphic Tees</a>
+                                    <a href="shop.html?category=essential">Essential Basics</a>
+                                    <a href="shop.html?category=oversized">Oversized Fit</a>
+                                    <a href="shop.html?category=limited">Limited Edition</a>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h4>Collections</h4>
+                                    <a href="shop.html?collection=winter">Winter Drop</a>
+                                    <a href="shop.html?collection=archive">Archive</a>
+                                    <a href="shop.html?collection=collab">Collaborations</a>
+                                    <a href="shop.html?collection=sale" class="highlight">Sale - Up to 40% Off</a>
+                                </div>
+                                <div class="dropdown-column featured">
+                                    <div class="featured-product">
+                                        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=300&h=400&fit=crop" alt="Featured Tee">
+                                        <div class="featured-info">
+                                            <span class="featured-label">New Arrival</span>
+                                            <span class="featured-name">Midnight Black Tee</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="shop.html?filter=new" class="nav-link">New Arrivals</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="shop.html?filter=sale" class="nav-link sale-link">Sale</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="nav-center">
+                <a href="index.html" class="logo">CALAZ</a>
+            </div>
+            <div class="nav-right">
+                <button class="nav-icon search-toggle" id="searchToggle" aria-label="Search">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="M21 21l-4.35-4.35"></path>
+                    </svg>
+                </button>
+                <a href="account.html" class="nav-icon" aria-label="Account">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </a>
+                <button class="nav-icon cart-toggle" id="cartToggle" aria-label="Cart">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <div class="mobile-menu-header">
+                <span class="logo">CALAZ</span>
+                <button class="close-menu" id="closeMenu" aria-label="Close menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <nav class="mobile-nav">
+                <a href="shop.html" class="mobile-nav-link">Shop All</a>
+                <a href="shop.html?category=graphic" class="mobile-nav-link">Graphic Tees</a>
+                <a href="shop.html?category=essential" class="mobile-nav-link">Essential Basics</a>
+                <a href="shop.html?category=oversized" class="mobile-nav-link">Oversized Fit</a>
+                <a href="shop.html?filter=new" class="mobile-nav-link">New Arrivals</a>
+                <a href="shop.html?filter=sale" class="mobile-nav-link highlight">Sale - Up to 40% Off</a>
+                <div class="mobile-nav-divider"></div>
+                <a href="about.html" class="mobile-nav-link secondary">About</a>
+                <a href="contact.html" class="mobile-nav-link secondary">Contact</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-container">
+            <form class="search-form" action="shop.html" method="GET">
+                <input type="text" name="search" class="search-input" placeholder="Search for tees..." autocomplete="off">
+                <button type="submit" class="search-submit" aria-label="Search">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="M21 21l-4.35-4.35"></path>
+                    </svg>
+                </button>
+            </form>
+            <button class="search-close" id="searchClose" aria-label="Close search">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="search-suggestions">
+                <span class="suggestions-label">Popular Searches</span>
+                <div class="suggestions-tags">
+                    <a href="shop.html?search=black" class="suggestion-tag">Black Tees</a>
+                    <a href="shop.html?search=oversized" class="suggestion-tag">Oversized</a>
+                    <a href="shop.html?search=graphic" class="suggestion-tag">Graphic</a>
+                    <a href="shop.html?search=limited" class="suggestion-tag">Limited Edition</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <aside class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="cart-close" id="cartClose" aria-label="Close cart">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="cart-body" id="cartBody">
+            <div class="cart-empty">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+                <p>Your cart is empty</p>
+                <a href="shop.html" class="btn btn-primary">Start Shopping</a>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <!-- Cart items will be inserted here -->
+            </div>
+        </div>
+        <div class="cart-footer" id="cartFooter">
+            <div class="cart-subtotal">
+                <span>Subtotal</span>
+                <span id="cartSubtotal">$0.00</span>
+            </div>
+            <p class="cart-note">Shipping calculated at checkout</p>
+            <a href="checkout.html" class="btn btn-primary btn-block">Checkout</a>
+            <a href="shop.html" class="btn btn-secondary btn-block">Continue Shopping</a>
+        </div>
+    </aside>
+
+    <!-- Hero Section -->
+    <main>
+        <section class="hero">
+            <div class="hero-media">
+                <video autoplay muted loop playsinline class="hero-video">
+                    <source src="https://assets.mixkit.co/videos/preview/mixkit-young-man-in-the-city-at-night-1229-large.mp4" type="video/mp4">
+                </video>
+                <div class="hero-overlay"></div>
+            </div>
+            <div class="hero-content">
+                <span class="hero-tag">Winter Collection '24</span>
+                <h1 class="hero-title">WEAR YOUR<br>ATTITUDE</h1>
+                <p class="hero-subtitle">Premium streetwear tees designed for those who refuse to blend in</p>
+                <div class="hero-cta">
+                    <a href="shop.html" class="btn btn-primary btn-large">Shop Collection</a>
+                    <a href="shop.html?filter=new" class="btn btn-outline btn-large">New Arrivals</a>
+                </div>
+            </div>
+            <div class="hero-scroll">
+                <span>Scroll</span>
+                <div class="scroll-line"></div>
+            </div>
+        </section>
+
+        <!-- Featured Categories -->
+        <section class="categories">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Shop by Style</h2>
+                    <a href="shop.html" class="section-link">View All</a>
+                </div>
+                <div class="categories-grid">
+                    <a href="shop.html?category=graphic" class="category-card">
+                        <div class="category-image">
+                            <img src="https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600&h=800&fit=crop" alt="Graphic Tees">
+                        </div>
+                        <div class="category-info">
+                            <h3>Graphic Tees</h3>
+                            <span class="category-count">24 Products</span>
+                        </div>
+                    </a>
+                    <a href="shop.html?category=essential" class="category-card">
+                        <div class="category-image">
+                            <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600&h=800&fit=crop" alt="Essential Basics">
+                        </div>
+                        <div class="category-info">
+                            <h3>Essential Basics</h3>
+                            <span class="category-count">18 Products</span>
+                        </div>
+                    </a>
+                    <a href="shop.html?category=oversized" class="category-card">
+                        <div class="category-image">
+                            <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&h=800&fit=crop" alt="Oversized Fit">
+                        </div>
+                        <div class="category-info">
+                            <h3>Oversized Fit</h3>
+                            <span class="category-count">12 Products</span>
+                        </div>
+                    </a>
+                    <a href="shop.html?category=limited" class="category-card featured">
+                        <div class="category-image">
+                            <img src="https://images.unsplash.com/photo-1622445275576-721325763afe?w=600&h=800&fit=crop" alt="Limited Edition">
+                        </div>
+                        <div class="category-info">
+                            <span class="category-badge">Limited</span>
+                            <h3>Limited Edition</h3>
+                            <span class="category-count">6 Products</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products -->
+        <section class="products">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Best Sellers</h2>
+                    <a href="shop.html?filter=bestseller" class="section-link">View All</a>
+                </div>
+                <div class="products-grid" id="productsGrid">
+                    <!-- Products will be loaded via JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Marquee Banner -->
+        <section class="marquee-section">
+            <div class="marquee">
+                <div class="marquee-content">
+                    <span>FREE SHIPPING</span>
+                    <span class="marquee-dot">●</span>
+                    <span>PREMIUM COTTON</span>
+                    <span class="marquee-dot">●</span>
+                    <span>SUSTAINABLE</span>
+                    <span class="marquee-dot">●</span>
+                    <span>MADE IN PORTUGAL</span>
+                    <span class="marquee-dot">●</span>
+                    <span>FREE SHIPPING</span>
+                    <span class="marquee-dot">●</span>
+                    <span>PREMIUM COTTON</span>
+                    <span class="marquee-dot">●</span>
+                    <span>SUSTAINABLE</span>
+                    <span class="marquee-dot">●</span>
+                    <span>MADE IN PORTUGAL</span>
+                    <span class="marquee-dot">●</span>
+                </div>
+                <div class="marquee-content" aria-hidden="true">
+                    <span>FREE SHIPPING</span>
+                    <span class="marquee-dot">●</span>
+                    <span>PREMIUM COTTON</span>
+                    <span class="marquee-dot">●</span>
+                    <span>SUSTAINABLE</span>
+                    <span class="marquee-dot">●</span>
+                    <span>MADE IN PORTUGAL</span>
+                    <span class="marquee-dot">●</span>
+                    <span>FREE SHIPPING</span>
+                    <span class="marquee-dot">●</span>
+                    <span>PREMIUM COTTON</span>
+                    <span class="marquee-dot">●</span>
+                    <span>SUSTAINABLE</span>
+                    <span class="marquee-dot">●</span>
+                    <span>MADE IN PORTUGAL</span>
+                    <span class="marquee-dot">●</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Arrivals -->
+        <section class="new-arrivals">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">New Arrivals</h2>
+                    <a href="shop.html?filter=new" class="section-link">View All</a>
+                </div>
+                <div class="arrivals-grid" id="arrivalsGrid">
+                    <!-- New arrivals will be loaded via JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Split Feature -->
+        <section class="split-feature">
+            <div class="split-item">
+                <div class="split-image">
+                    <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=800&h=1000&fit=crop" alt="The Archive Collection">
+                </div>
+                <div class="split-content">
+                    <span class="split-tag">Collection</span>
+                    <h2>The Archive</h2>
+                    <p>Rediscover our most iconic pieces. Limited quantities, timeless designs.</p>
+                    <a href="shop.html?collection=archive" class="btn btn-primary">Explore Archive</a>
+                </div>
+            </div>
+            <div class="split-item reverse">
+                <div class="split-image">
+                    <img src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=800&h=1000&fit=crop" alt="Sustainable Fashion">
+                </div>
+                <div class="split-content">
+                    <span class="split-tag">Sustainability</span>
+                    <h2>Made to Last</h2>
+                    <p>100% organic cotton. Fair trade certified. Zero compromise on quality.</p>
+                    <a href="about.html#sustainability" class="btn btn-outline">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Instagram Section -->
+        <section class="instagram-section">
+            <div class="container">
+                <div class="section-header centered">
+                    <span class="section-tag">@calaz.official</span>
+                    <h2 class="section-title">Join the Community</h2>
+                </div>
+                <div class="instagram-grid">
+                    <a href="#" class="instagram-item">
+                        <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=400&h=400&fit=crop" alt="Instagram post">
+                        <div class="instagram-overlay">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"></rect>
+                                <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"></circle>
+                                <circle cx="18" cy="6" r="1.5"></circle>
+                            </svg>
+                        </div>
+                    </a>
+                    <a href="#" class="instagram-item">
+                        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&h=400&fit=crop" alt="Instagram post">
+                        <div class="instagram-overlay">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"></rect>
+                                <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"></circle>
+                                <circle cx="18" cy="6" r="1.5"></circle>
+                            </svg>
+                        </div>
+                    </a>
+                    <a href="#" class="instagram-item">
+                        <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=400&h=400&fit=crop" alt="Instagram post">
+                        <div class="instagram-overlay">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"></rect>
+                                <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"></circle>
+                                <circle cx="18" cy="6" r="1.5"></circle>
+                            </svg>
+                        </div>
+                    </a>
+                    <a href="#" class="instagram-item">
+                        <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=400&h=400&fit=crop" alt="Instagram post">
+                        <div class="instagram-overlay">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"></rect>
+                                <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"></circle>
+                                <circle cx="18" cy="6" r="1.5"></circle>
+                            </svg>
+                        </div>
+                    </a>
+                    <a href="#" class="instagram-item">
+                        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=400&h=400&fit=crop" alt="Instagram post">
+                        <div class="instagram-overlay">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"></rect>
+                                <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"></circle>
+                                <circle cx="18" cy="6" r="1.5"></circle>
+                            </svg>
+                        </div>
+                    </a>
+                    <a href="#" class="instagram-item">
+                        <img src="https://images.unsplash.com/photo-1495385794356-15371f348c31?w=400&h=400&fit=crop" alt="Instagram post">
+                        <div class="instagram-overlay">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"></rect>
+                                <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"></circle>
+                                <circle cx="18" cy="6" r="1.5"></circle>
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="newsletter">
+            <div class="container">
+                <div class="newsletter-content">
+                    <h2>Get 10% Off Your First Order</h2>
+                    <p>Subscribe for exclusive drops, early access, and members-only perks.</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                    <span class="newsletter-note">No spam, unsubscribe anytime.</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">CALAZ</a>
+                    <p>Premium streetwear tees for those who dare to stand out. Quality craftsmanship meets bold design.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="TikTok">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Twitter">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Shop</h4>
+                    <a href="shop.html">All Tees</a>
+                    <a href="shop.html?category=graphic">Graphic Tees</a>
+                    <a href="shop.html?category=essential">Essential Basics</a>
+                    <a href="shop.html?filter=new">New Arrivals</a>
+                    <a href="shop.html?filter=sale">Sale</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Help</h4>
+                    <a href="faq.html">FAQ</a>
+                    <a href="shipping.html">Shipping</a>
+                    <a href="returns.html">Returns</a>
+                    <a href="size-guide.html">Size Guide</a>
+                    <a href="contact.html">Contact Us</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <a href="about.html">About Us</a>
+                    <a href="about.html#sustainability">Sustainability</a>
+                    <a href="stores.html">Stores</a>
+                    <a href="careers.html">Careers</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-legal">
+                    <span>&copy; 2024 Calaz. All rights reserved.</span>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+                <div class="footer-payments">
+                    <img src="https://cdn-icons-png.flaticon.com/32/349/349221.png" alt="Visa">
+                    <img src="https://cdn-icons-png.flaticon.com/32/349/349228.png" alt="Mastercard">
+                    <img src="https://cdn-icons-png.flaticon.com/32/349/349230.png" alt="Amex">
+                    <img src="https://cdn-icons-png.flaticon.com/32/349/349265.png" alt="PayPal">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

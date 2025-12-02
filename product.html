@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product - CALAZ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .product-page { padding: var(--space-2xl) 0 var(--space-4xl); }
+        .product-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-2xl);
+        }
+        @media (min-width: 992px) {
+            .product-layout {
+                grid-template-columns: 1fr 1fr;
+                gap: var(--space-4xl);
+            }
+        }
+        .product-gallery { display: flex; flex-direction: column; gap: var(--space-md); }
+        .product-main-image {
+            aspect-ratio: 3/4;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            background: var(--color-gray-900);
+        }
+        .product-main-image img { width: 100%; height: 100%; object-fit: cover; }
+        .product-thumbnails { display: flex; gap: var(--space-sm); }
+        .thumbnail {
+            width: 80px;
+            height: 100px;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color var(--transition-fast);
+        }
+        .thumbnail.active, .thumbnail:hover { border-color: var(--color-white); }
+        .thumbnail img { width: 100%; height: 100%; object-fit: cover; }
+        .product-breadcrumb {
+            font-size: 0.75rem;
+            color: var(--color-gray-500);
+            margin-bottom: var(--space-md);
+        }
+        .product-breadcrumb a:hover { color: var(--color-white); }
+        .product-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: var(--space-sm);
+        }
+        .product-category-tag {
+            font-size: 0.8125rem;
+            color: var(--color-gray-400);
+            margin-bottom: var(--space-lg);
+        }
+        .product-price-large {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            margin-bottom: var(--space-2xl);
+        }
+        .price-large { font-family: var(--font-display); font-size: 2rem; }
+        .price-large-original {
+            font-size: 1.25rem;
+            color: var(--color-gray-500);
+            text-decoration: line-through;
+        }
+        .price-large-discount {
+            font-size: 0.875rem;
+            font-weight: 600;
+            background: var(--color-accent);
+            color: var(--color-white);
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-sm);
+        }
+        .product-option { margin-bottom: var(--space-xl); }
+        .option-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--color-gray-400);
+            margin-bottom: var(--space-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        .option-value { color: var(--color-white); text-transform: none; letter-spacing: normal; }
+        .color-options { display: flex; gap: var(--space-sm); }
+        .color-option {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all var(--transition-fast);
+        }
+        .color-option:hover, .color-option.active { border-color: var(--color-white); }
+        .size-options { display: flex; gap: var(--space-sm); }
+        .size-option {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--color-gray-700);
+            border-radius: var(--radius-sm);
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+        .size-option:hover { border-color: var(--color-white); }
+        .size-option.active {
+            background: var(--color-white);
+            color: var(--color-black);
+            border-color: var(--color-white);
+        }
+        .size-option.disabled { opacity: 0.3; cursor: not-allowed; }
+        .add-to-cart-section {
+            display: flex;
+            gap: var(--space-md);
+            margin-bottom: var(--space-2xl);
+        }
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--color-gray-700);
+            border-radius: var(--radius-sm);
+        }
+        .qty-btn-large {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: var(--color-gray-400);
+            transition: color var(--transition-fast);
+        }
+        .qty-btn-large:hover { color: var(--color-white); }
+        .qty-input {
+            width: 48px;
+            height: 48px;
+            text-align: center;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            background: transparent;
+            border: none;
+            color: var(--color-white);
+            outline: none;
+        }
+        .add-to-cart-btn { flex: 1; height: 48px; }
+        .product-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-md);
+            padding: var(--space-xl) 0;
+            border-top: 1px solid var(--color-gray-800);
+            border-bottom: 1px solid var(--color-gray-800);
+            margin-bottom: var(--space-2xl);
+        }
+        .feature-item { text-align: center; }
+        .feature-item svg { margin-bottom: var(--space-sm); color: var(--color-accent); }
+        .feature-item span { font-size: 0.75rem; color: var(--color-gray-400); display: block; }
+        .product-accordion { border-top: 1px solid var(--color-gray-800); }
+        .accordion-item { border-bottom: 1px solid var(--color-gray-800); }
+        .accordion-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-lg) 0;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .accordion-header svg { transition: transform var(--transition-fast); }
+        .accordion-item.open .accordion-header svg { transform: rotate(180deg); }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height var(--transition-base); }
+        .accordion-item.open .accordion-content { max-height: 500px; }
+        .accordion-body {
+            padding-bottom: var(--space-xl);
+            color: var(--color-gray-400);
+            font-size: 0.9375rem;
+            line-height: 1.8;
+        }
+        .accordion-body ul { margin-top: var(--space-md); }
+        .accordion-body li { position: relative; padding-left: var(--space-lg); margin-bottom: var(--space-sm); }
+        .accordion-body li::before { content: '•'; position: absolute; left: 0; color: var(--color-accent); }
+        .related-products { padding: var(--space-4xl) 0; background: var(--color-dark); }
+    </style>
+</head>
+<body>
+    <div class="announcement-bar">
+        <div class="announcement-content">
+            <span class="announcement-text">FREE SHIPPING ON ORDERS OVER $100</span>
+        </div>
+    </div>
+
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-left">
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                    <span class="hamburger"></span>
+                </button>
+                <ul class="nav-links">
+                    <li class="nav-item"><a href="shop.html" class="nav-link">Shop</a></li>
+                    <li class="nav-item"><a href="shop.html?filter=new" class="nav-link">New Arrivals</a></li>
+                </ul>
+            </div>
+            <div class="nav-center">
+                <a href="index.html" class="logo">CALAZ</a>
+            </div>
+            <div class="nav-right">
+                <button class="nav-icon cart-toggle" id="cartToggle" aria-label="Cart">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <div class="mobile-menu-header">
+                <span class="logo">CALAZ</span>
+                <button class="close-menu" id="closeMenu" aria-label="Close menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <nav class="mobile-nav">
+                <a href="shop.html" class="mobile-nav-link">Shop All</a>
+                <a href="about.html" class="mobile-nav-link">About</a>
+                <a href="contact.html" class="mobile-nav-link">Contact</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <aside class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="cart-close" id="cartClose" aria-label="Close cart">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="cart-body" id="cartBody">
+            <div class="cart-empty">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+                <p>Your cart is empty</p>
+                <a href="shop.html" class="btn btn-primary">Start Shopping</a>
+            </div>
+            <div class="cart-items" id="cartItems"></div>
+        </div>
+        <div class="cart-footer" id="cartFooter">
+            <div class="cart-subtotal">
+                <span>Subtotal</span>
+                <span id="cartSubtotal">$0.00</span>
+            </div>
+            <a href="checkout.html" class="btn btn-primary btn-block">Checkout</a>
+        </div>
+    </aside>
+
+    <main>
+        <section class="product-page">
+            <div class="container">
+                <div class="product-layout">
+                    <div class="product-gallery">
+                        <div class="product-main-image">
+                            <img id="mainImage" src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&h=1000&fit=crop" alt="Product">
+                        </div>
+                        <div class="product-thumbnails" id="thumbnails">
+                            <button class="thumbnail active" data-image="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&h=1000&fit=crop">
+                                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=100&h=125&fit=crop" alt="View 1">
+                            </button>
+                            <button class="thumbnail" data-image="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=800&h=1000&fit=crop">
+                                <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=100&h=125&fit=crop" alt="View 2">
+                            </button>
+                            <button class="thumbnail" data-image="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&h=1000&fit=crop">
+                                <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=100&h=125&fit=crop" alt="View 3">
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-details">
+                        <div class="product-breadcrumb">
+                            <a href="index.html">Home</a> / <a href="shop.html">Shop</a> / <span id="productCategoryBread">Essential Basics</span>
+                        </div>
+
+                        <h1 class="product-title" id="productTitle">Midnight Essential Tee</h1>
+                        <p class="product-category-tag" id="productCategoryTag">Essential Basics</p>
+
+                        <div class="product-price-large">
+                            <span class="price-large" id="productPrice">$45.00</span>
+                            <span class="price-large-original" id="productOriginalPrice" style="display: none;"></span>
+                            <span class="price-large-discount" id="productDiscount" style="display: none;"></span>
+                        </div>
+
+                        <div class="product-option">
+                            <div class="option-label">
+                                Color: <span class="option-value" id="selectedColor">Black</span>
+                            </div>
+                            <div class="color-options" id="colorOptions">
+                                <button class="color-option active" data-color="Black" style="background: #0a0a0a;"></button>
+                                <button class="color-option" data-color="White" style="background: #ffffff;"></button>
+                                <button class="color-option" data-color="Gray" style="background: #666666;"></button>
+                            </div>
+                        </div>
+
+                        <div class="product-option">
+                            <div class="option-label">
+                                Size: <span class="option-value" id="selectedSize">M</span>
+                            </div>
+                            <div class="size-options" id="sizeOptions">
+                                <button class="size-option" data-size="XS">XS</button>
+                                <button class="size-option" data-size="S">S</button>
+                                <button class="size-option active" data-size="M">M</button>
+                                <button class="size-option" data-size="L">L</button>
+                                <button class="size-option" data-size="XL">XL</button>
+                            </div>
+                        </div>
+
+                        <div class="add-to-cart-section">
+                            <div class="quantity-selector">
+                                <button class="qty-btn-large" id="qtyDecrease">−</button>
+                                <input type="number" class="qty-input" id="qtyInput" value="1" min="1" max="10">
+                                <button class="qty-btn-large" id="qtyIncrease">+</button>
+                            </div>
+                            <button class="btn btn-primary add-to-cart-btn" id="addToCartBtn">Add to Cart</button>
+                        </div>
+
+                        <div class="product-features">
+                            <div class="feature-item">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="1" y="3" width="15" height="13"></rect>
+                                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                                    <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                                    <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                                </svg>
+                                <span>Free Shipping</span>
+                            </div>
+                            <div class="feature-item">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="23 4 23 10 17 10"></polyline>
+                                    <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                                </svg>
+                                <span>30-Day Returns</span>
+                            </div>
+                            <div class="feature-item">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                </svg>
+                                <span>Secure Checkout</span>
+                            </div>
+                        </div>
+
+                        <div class="product-accordion">
+                            <div class="accordion-item open">
+                                <div class="accordion-header">
+                                    <span>Description</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="accordion-content">
+                                    <div class="accordion-body">
+                                        <p>Premium quality tee crafted from 100% organic cotton for a soft, lived-in feel from day one.</p>
+                                        <ul>
+                                            <li>100% Organic Cotton (220 GSM)</li>
+                                            <li>Relaxed, boxy fit</li>
+                                            <li>Ribbed crew neck</li>
+                                            <li>Made in Portugal</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Shipping & Returns</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="accordion-content">
+                                    <div class="accordion-body">
+                                        <p>Free standard shipping on orders over $100.</p>
+                                        <ul>
+                                            <li>Standard: 5-7 business days</li>
+                                            <li>Express: 2-3 business days</li>
+                                            <li>Free returns within 30 days</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="related-products">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">You May Also Like</h2>
+                    <a href="shop.html" class="section-link">View All</a>
+                </div>
+                <div class="products-grid" id="relatedProducts"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <span>&copy; 2024 Calaz. All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        const mainImage = document.getElementById('mainImage');
+        const thumbnails = document.getElementById('thumbnails');
+        const colorOptions = document.getElementById('colorOptions');
+        const sizeOptions = document.getElementById('sizeOptions');
+        const selectedColor = document.getElementById('selectedColor');
+        const selectedSize = document.getElementById('selectedSize');
+        const qtyInput = document.getElementById('qtyInput');
+        const qtyDecrease = document.getElementById('qtyDecrease');
+        const qtyIncrease = document.getElementById('qtyIncrease');
+        const addToCartBtn = document.getElementById('addToCartBtn');
+        const relatedProductsGrid = document.getElementById('relatedProducts');
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = parseInt(urlParams.get('id')) || 1;
+
+        const currentProduct = [...products, ...newArrivals].find(p => p.id === productId) || products[0];
+
+        document.getElementById('productTitle').textContent = currentProduct.name;
+        document.getElementById('productCategoryTag').textContent = currentProduct.category;
+        document.getElementById('productCategoryBread').textContent = currentProduct.category;
+        document.getElementById('productPrice').textContent = `$${currentProduct.price.toFixed(2)}`;
+        document.title = `${currentProduct.name} - CALAZ`;
+
+        if (currentProduct.originalPrice) {
+            document.getElementById('productOriginalPrice').textContent = `$${currentProduct.originalPrice.toFixed(2)}`;
+            document.getElementById('productOriginalPrice').style.display = 'inline';
+            const discount = Math.round((1 - currentProduct.price / currentProduct.originalPrice) * 100);
+            document.getElementById('productDiscount').textContent = `-${discount}%`;
+            document.getElementById('productDiscount').style.display = 'inline';
+        }
+
+        mainImage.src = currentProduct.image;
+
+        thumbnails.addEventListener('click', (e) => {
+            const thumb = e.target.closest('.thumbnail');
+            if (thumb) {
+                thumbnails.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                thumb.classList.add('active');
+                mainImage.src = thumb.dataset.image;
+            }
+        });
+
+        colorOptions.addEventListener('click', (e) => {
+            const option = e.target.closest('.color-option');
+            if (option) {
+                colorOptions.querySelectorAll('.color-option').forEach(o => o.classList.remove('active'));
+                option.classList.add('active');
+                selectedColor.textContent = option.dataset.color;
+            }
+        });
+
+        sizeOptions.addEventListener('click', (e) => {
+            const option = e.target.closest('.size-option');
+            if (option && !option.classList.contains('disabled')) {
+                sizeOptions.querySelectorAll('.size-option').forEach(o => o.classList.remove('active'));
+                option.classList.add('active');
+                selectedSize.textContent = option.dataset.size;
+            }
+        });
+
+        qtyDecrease.addEventListener('click', () => {
+            const val = parseInt(qtyInput.value);
+            if (val > 1) qtyInput.value = val - 1;
+        });
+
+        qtyIncrease.addEventListener('click', () => {
+            const val = parseInt(qtyInput.value);
+            if (val < 10) qtyInput.value = val + 1;
+        });
+
+        addToCartBtn.addEventListener('click', () => {
+            const qty = parseInt(qtyInput.value);
+            for (let i = 0; i < qty; i++) {
+                addToCart(currentProduct, selectedSize.textContent, selectedColor.textContent);
+            }
+        });
+
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                header.closest('.accordion-item').classList.toggle('open');
+            });
+        });
+
+        const relatedProducts = [...products, ...newArrivals]
+            .filter(p => p.id !== currentProduct.id)
+            .sort(() => Math.random() - 0.5)
+            .slice(0, 4);
+        
+        renderProducts(relatedProductsGrid, relatedProducts);
+    </script>
+</body>
+</html>
+
