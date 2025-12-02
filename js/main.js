@@ -23,7 +23,7 @@ const products = [
         id: 2,
         name: "Urban Graphic Tee",
         category: "Graphic Tees",
-        price: 55,
+        price: 25,
         originalPrice: null,
         badge: "new",
         colors: ["#0a0a0a", "#1a365d"],
